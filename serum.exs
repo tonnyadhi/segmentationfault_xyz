@@ -1,5 +1,5 @@
 %{
-  site_name: "Segmentation Fault Site",
+  site_name: "Segmentation Fault",
   site_description: "Segfault is better than Kernel Panic",
   date_format: "{WDfull}, {D} {Mshort} {YYYY}",
   base_url: "/",

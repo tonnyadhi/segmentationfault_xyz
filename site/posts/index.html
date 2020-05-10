@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>All Posts - SegmentationFaultSite</title>
+    <title>All Posts - Segmentation Fault</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/prism.css">
     
@@ -17,8 +17,8 @@
   <body>
     <div id="wrapper">
       <header id="top">
-<h1><a href="/">SegmentationFaultSite</a></h1>
-<p>Scio Me Nihil Scire</p>
+<h1><a href="/">Segmentation Fault</a></h1>
+<p>Segfault is better than Kernel Panic</p>
 </header>
       <nav>
 <ul>
@@ -27,13 +27,13 @@
 </ul>
 </nav>
       <hr>
-      <main><article class="list"><header><h1 id="all-posts">All Posts</h1></header><div><ul><li class="article"><h2 id="sample-post-"><a href="/posts/2019-01-01-sample-post.html">Sample Post</a><br/></h2><p class="post-date">
-            Tuesday, 1 Jan 2019
+      <main><article class="list"><header><h1 id="all-posts">All Posts</h1></header><div><ul><li class="article"><h2 id="deploying-serum-site-"><a href="/posts/2020-05-09-deploying-serum-site.html">Deploying Serum Site</a><br/></h2><p class="post-date">
+            Friday, 8 May 2020
             
               <span class="tags">
                 Tags:
                 
-                  <a class="tag" href="/tags/hello">hello</a><a class="tag" href="/tags/sample">sample</a></span></p><p class="post-preview">This is a sample blog post. Did you know Serum focuses on blogging, as well as general purpose static websites? Serum is capable of handling tagged blog posts and generating lists of blog posts!…</p></li></ul></div><ul class="pagination"><li><span class="page-button current">1</span></li></ul></article></main>
+                  <a class="tag" href="/tags/asdf">asdf</a><a class="tag" href="/tags/blog">blog</a><a class="tag" href="/tags/elixir">elixir</a><a class="tag" href="/tags/serum">serum</a></span></p><p class="post-preview">It’s has been a long time since i’m doing a blog, also writing some experiment results or technical tutorial. Now, i’m back. Currently, i’m starting to know more about functional programming and Elixi…</p></li></ul></div><ul class="pagination"><li><span class="page-button current">1</span></li></ul></article></main>
       <hr>
       <footer>
         
@@ -51,26 +51,3 @@
     <script src="/assets/js/prism.js"></script>
   </body>
 </html>
-<script>
-const ws_url = "ws://" + location.host + "/serum_live_reloader";
-var ws;
-
-connect();
-
-function connect() {
-  ws = new WebSocket(ws_url);
-  ws.onmessage = onMessage;
-  ws.onclose = onClose;
-}
-
-function onMessage(e) {
-  if (e.data === "reload") {
-    location.reload();
-  }
-}
-
-function onClose(e) {
-  console.warn("WebSocket disconnected from server. Reconnecting in 10 seconds.");
-  setTimeout(connect, 10000)
-}
-</script>

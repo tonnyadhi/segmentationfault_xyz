@@ -1,0 +1,63 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Deploying Serum Site - Segmentation Fault</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    
+<!--==========================================-->
+<!-- Override "includes/head-extras.html.eex" -->
+<!-- to add more tags inside this <head> tag. -->
+<!--==========================================-->
+
+  </head>
+  <body>
+    <div id="wrapper">
+      <header id="top">
+<h1><a href="/">Segmentation Fault</a></h1>
+<p>Segfault is better than Kernel Panic</p>
+</header>
+      <nav>
+<ul>
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/posts">Posts</a></li>
+</ul>
+</nav>
+      <hr>
+      <main><article class="post"><header><h1 id="deploying-serum-site">Deploying Serum Site</h1><p>
+      Friday, 8 May 2020
+      
+        <span class="tags">
+          Tags:
+          
+            <a class="tag" href="/tags/asdf">asdf</a><a class="tag" href="/tags/blog">blog</a><a class="tag" href="/tags/elixir">elixir</a><a class="tag" href="/tags/serum">serum</a></span></p></header><div><p>It’s has been a long time since i’m doing a blog, also writing some experiment results or technical tutorial. Now, i’m back. Currently, i’m starting to know more about functional programming and Elixir (because of work). So, i decided to also write this blog using Elixir. More precisely using <a href="https://github.com/Dalgona/Serum">Serum</a>. Serum is a simple static generator written in Elixir. I don’t need the functionality of Phoenix for just a simple blog. I’ll show you the way on how to deploy Serum</p><h2 id="asdf-:-the-multiple-runtime-version-manager">asdf : the multiple runtime version manager</h2><p>Do you run multiple runtime system for your work ? You maybe run several version of Ruby, multiple version of Python, and also Rust on your machine. Fear not, there is now a single runtime manager for all those languages. Its written on shell script and can be extended with multiple plugins to support your preferred language and runtime environment. It’s called <a href="https://github.com/asdf-vm/asdf">asdf</a></p><p>So, before i start using Elixir and Serum, i installed this manager on the machine with i’m working with as the server for this blog. Here are the steps you need to deploy asdf into your box.</p><ul><li><p>install the dependencies</p><ul><li><code class="inline">sudo apt install curl git</code></li></ul></li><li><p>clone asdf latest branch</p><ul><li><code class="inline">git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8</code></li></ul></li><li><p>add asdf to our shell</p><ul><li><p>add the following to your <em>./bashrc</em></p><ul><li><code class="inline">. $HOME/.asdf/asdf.sh</code></li><li><code class="inline">. $HOME/.asdf/completions/asdf.bash</code></li></ul></li></ul></li><li><p>restart your shell or just sourced your <em>./bashrc</em></p><ul><li><code class="inline">source ~/.bashrc</code></li></ul></li></ul><h2 id="deploying-elixir-using-asdf">deploying elixir using asdf</h2><p>elixir and BEAM vm also can be managed using asdf.</p><ul><li><p>install asdf erlang/otp plugin and elixir plugin</p><ul><li><code class="inline">asdf plugin add erlang</code></li><li><code class="inline">asdf plugin add elixir</code></li></ul></li><li><p>install BEAM vm and erlang/otp runtime using asdf</p><ul><li><code class="inline">asdf install erlang 22.3.3 + install elixir using asdf -</code>asdf install elixir 1.10.3-otp-22
+</li></ul></li></ul><h2 id="creating-your-serum-site">creating your serum site</h2><p>serum is really easy to install, because its already wrapped into <a href="https://hex.pm/packages/serum">Hex package</a></p><ul><li><p>install serum as mix archive</p><ul><li><code class="inline">mix archive.install hex serum_new</code></li></ul></li><li><p>initiate your site</p><ul><li><code class="inline">mix serum.new $HOME/segmentationfault_xyz</code></li></ul></li><li><p>fetch the dependencies</p><ul><li><code class="inline">cd $HOME/segmentationfault_xyz</code></li><li><code class="inline">mix deps.get &amp;&amp; mix compile</code></li></ul></li><li><p>start to write content</p><ul><li>post in form of pages are located under <em>/pages</em> directory
+</li><li>blog posts are located under <em>/posts</em> directory. write a post in a form of <a href="https://markdown-guide.readthedocs.io">markdown document formatted</a> add a theme into your site
+</li></ul></li><li><p>add a theme as dependency on your <em>mix.exs</em> file</p><pre><code>  defp deps do
+  [
+      {:serum, &quot;~&gt; 1.4&quot;},
+      {:serum_theme_essence, &quot;~&gt; 1.0&quot;}
+  ]
+  end</code></pre></li><li><p>in order to check your post, you can run a serum server on your box</p><ul><li><code class="inline">$ mix serum.server --port 8080</code></li></ul></li><li><p>build your site</p><ul><li><code class="inline">MIX_ENV=prod mix serum.build</code></li></ul></li><li>all site structure and assets will be put under <em>/site</em> directory. you can serve this directory using web server such as nginx
+</li><li>done. enjoy!
+</li></ul><p>Note : this site structure is put under this <a href="https://github.com/tonnyadhi/segmentationfault_xyz">github repository</a>.</p></div></article></main>
+      <hr>
+      <footer>
+        
+<!--=====================================-->
+<!-- Override "includes/footer.html.eex" -->
+<!-- to customize your footer contents.  -->
+<!--=====================================-->
+
+        <p>
+          Powered by <a href="https://github.com/Dalgona/Serum">Serum</a> v1.4.1,
+          with <a href="https://github.com/Dalgona/serum-theme-essence">Essence</a> theme
+        </p>
+      </footer>
+    </div>
+    <script src="/assets/js/prism.js"></script>
+  </body>
+</html>
