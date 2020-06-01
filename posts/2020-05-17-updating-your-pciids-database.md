@@ -41,3 +41,5 @@ Now _lspci_ can display my RX 5600 XT id correctly
 ![lspci](/media/lspci.png)
 
 Now, i'm crossing my finger when sending AMD email on my lspci output. Hopefully they can process my request immediately.
+
+Updated : I already claimed my free games from AMD on May 20th, 2020. Thank you AMD.
