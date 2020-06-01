@@ -6,7 +6,8 @@
   author: "Tonny Adhi Sabastian",
   author_email: "tonny@segmentationfault.xyz",
   plugins: [
-    {Serum.Plugins.LiveReloader, only: :dev}
+    {Serum.Plugins.LiveReloader, only: :dev},
+    {Serum.Plugins.SitemapGenerator, args: [for: [:pages, :posts]], only: :prod}
   ],
   theme: Serum.Themes.Essence
 }
