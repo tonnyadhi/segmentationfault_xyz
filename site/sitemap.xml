@@ -4,7 +4,7 @@
 
   
     <url>
-      <loc>index.html</loc>
+      <loc>https://segmentationfault.xyz/index.html</loc>
       <lastmod>2020-06-01</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
@@ -13,14 +13,14 @@
 
   
     <url>
-      <loc>posts/2020-05-17-updating-your-pciids-database.html</loc>
+      <loc>https://segmentationfault.xyz/posts/2020-05-17-updating-your-pciids-database.html</loc>
       <lastmod>2020-05-17</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
     </url>
   
     <url>
-      <loc>posts/2020-05-09-deploying-serum-site.html</loc>
+      <loc>https://segmentationfault.xyz/posts/2020-05-09-deploying-serum-site.html</loc>
       <lastmod>2020-05-08</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
