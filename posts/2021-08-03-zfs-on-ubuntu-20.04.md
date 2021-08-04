@@ -38,7 +38,7 @@ Here are the steps you need to deploy zfs into your Ubuntu 20.04
   - `sudo zpool import fenrir-pool`
 + Checking your pool status
     
-    $ zpool status
+      s$ zpool status
       pool: fenrir-pool
       state: ONLINE
       config:
