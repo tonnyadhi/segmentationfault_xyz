@@ -39,13 +39,12 @@ Here are the steps you need to deploy zfs into your Ubuntu 20.04
 + Checking your pool status
     
     $ zpool status
-    pool: fenrir-pool
-    state: ONLINE
-    config:
-
-	NAME         STATE     READ WRITE CKSUM
-	fenrir-pool  ONLINE       0     0     0
-	  raidz1-0   ONLINE       0     0     0
-	    sda      ONLINE       0     0     0
-	    sdb      ONLINE       0     0     0
+      pool: fenrir-pool
+      state: ONLINE
+      config:
+    	NAME         STATE     READ WRITE CKSUM
+	    fenrir-pool  ONLINE       0     0     0
+	    raidz1-0   ONLINE       0     0     0
+	      sda      ONLINE       0     0     0
+	      sdb      ONLINE       0     0     0
 + enjoy your raidz. one thing i have not succeeded is to automatically mount zfs pool during boot. i already set zfs cache, but its not help at all.
