@@ -3,23 +3,57 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Pulseaudio Setting for Echo Cancellation - Segmentation Fault</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    
+<!--==========================================-->
+<!-- Override "includes/head-extras.html.eex" -->
+<!-- to add more tags inside this <head> tag. -->
+<!--==========================================-->
+
   </head>
   <body>
-    <h1><a href="/">Segmentation Fault</a></h1>
-    <p>Segfault is better than Kernel Panic</p>
-    
+    <div id="wrapper">
+      <header id="top">
+<h1><a href="/">Segmentation Fault</a></h1>
+<p>Segfault is better than Kernel Panic</p>
+</header>
+      <nav>
 <ul>
   <li><a href="/index.html">Home</a></li>
   <li><a href="/posts">Posts</a></li>
 </ul>
-
-    <h1 id="pulseaudio-setting-for-echo-cancellation">Pulseaudio Setting for Echo Cancellation</h1><p>Posted on Monday, 1 Jun 2020 by Tonny Adhi Sabastian</p><p>Tags:</p><ul><li><a href="/tags/echo cancel">echo cancel</a></li><li><a href="/tags/pulseaudio">pulseaudio</a></li><li><a href="/tags/ubuntu">ubuntu</a></li><li><a href="/tags/video conference">video conference</a></li><li><a href="/tags/wfh">wfh</a></li><li><a href="/tags/work from home">work from home</a></li></ul><p>During this pandemic situation, we engineers also doing their job from home. Also, with the help with good internet bandwidth (<strong>damn you Telkom Indihome</strong>), we are doing video call often. At last my 7 years old C130 Logitech Webcam can be put to use again. Yep, its not HD camera. Using it with one of Indonesia’s largest (and sometimes slowest) broadband provider, seemed enough for now.</p><p>The problem came when i got complained for echo that happened during video call. I though this was because of the internal mic on my webcam. So, i grab a new <a href="https://www.tokopedia.com/invokerlist2/portable-microphone-mic-mikrofon-smule-usb-with-stand-sf-960b-4">USB mic</a> at about 12 USD on local marketplace. Well, the problem still exist. It is impossible to isolate completely echo caused by background noises. except maybe in a recording studio.</p><p><a href="https://www.freedesktop.org/wiki/Software/PulseAudio/">Pulseaudio</a> then come into rescue. It is a sound server , aka userspace mixer that accompany <a href="https://www.alsa-project.org/wiki/Main_Page">ALSA</a> in kernel level. Most of modern GNU/Linux comes with it, enabling you to do “advanced operations” with your audio devices. <a href="https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting">ArchLinux wiki</a> has a comprehensive guide on Pulseaudio configuration.</p><p>Apparently, Pulseaudio have <a href="https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-echo-cancel">digital echo cancellation module</a> embedded within it. This module can do Accoustic Echo Cancellation and filtering your audio input. Pulseaudio on Ubuntu 18.04 also already come with it, but it not loaded when the service started. In order to activated it, you have to load it. Add this module into your Pulseaudio, via <code class="inline">/etc/pulse/default.pa</code></p><pre><code>load-module module-echo-cancel use_master_format=1 aec_method=webrtc\
+</nav>
+      <hr>
+      <main><article class="post"><header><h1 id="pulseaudio-setting-for-echo-cancellation">Pulseaudio Setting for Echo Cancellation</h1><p>
+      Monday, 1 Jun 2020
+      
+        <span class="tags">
+          Tags:
+          
+            <a class="tag" href="/tags/echo cancel">echo cancel</a><a class="tag" href="/tags/pulseaudio">pulseaudio</a><a class="tag" href="/tags/ubuntu">ubuntu</a><a class="tag" href="/tags/video conference">video conference</a><a class="tag" href="/tags/wfh">wfh</a><a class="tag" href="/tags/work from home">work from home</a></span></p></header><div><p>During this pandemic situation, we engineers also doing their job from home. Also, with the help with good internet bandwidth (<strong>damn you Telkom Indihome</strong>), we are doing video call often. At last my 7 years old C130 Logitech Webcam can be put to use again. Yep, its not HD camera. Using it with one of Indonesia’s largest (and sometimes slowest) broadband provider, seemed enough for now.</p><p>The problem came when i got complained for echo that happened during video call. I though this was because of the internal mic on my webcam. So, i grab a new <a href="https://www.tokopedia.com/invokerlist2/portable-microphone-mic-mikrofon-smule-usb-with-stand-sf-960b-4">USB mic</a> at about 12 USD on local marketplace. Well, the problem still exist. It is impossible to isolate completely echo caused by background noises. except maybe in a recording studio.</p><p><a href="https://www.freedesktop.org/wiki/Software/PulseAudio/">Pulseaudio</a> then come into rescue. It is a sound server , aka userspace mixer that accompany <a href="https://www.alsa-project.org/wiki/Main_Page">ALSA</a> in kernel level. Most of modern GNU/Linux comes with it, enabling you to do “advanced operations” with your audio devices. <a href="https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting">ArchLinux wiki</a> has a comprehensive guide on Pulseaudio configuration.</p><p>Apparently, Pulseaudio have <a href="https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-echo-cancel">digital echo cancellation module</a> embedded within it. This module can do Accoustic Echo Cancellation and filtering your audio input. Pulseaudio on Ubuntu 18.04 also already come with it, but it not loaded when the service started. In order to activated it, you have to load it. Add this module into your Pulseaudio, via <code class="inline">/etc/pulse/default.pa</code></p><pre><code>load-module module-echo-cancel use_master_format=1 aec_method=webrtc\
  aec_args=&quot;analog_gain_control=0\ digital_gain_control=1&quot;\
  source_name=echoCancel_source sink_name=echoCancel_sink
 set-default-source echoCancel_source
 set-default-sink echoCancel_sink</code></pre><p>After that, restart your Pulseaudio service</p><pre><code>$pulseaudio -k
 $pulseaudio --start</code></pre><p>Wala, you’ll have virtual microphone input (echo cancel sink) from your mic. Use that as your audio capture device. Here’s mine:
-<img src="/media/pulseaudio_echo_cancel.png" alt="virtual microphone sink"/></p><p>Additionaly, you can also set your sound card sampling rate to minimize static noise from your microphone. My sound card has 48000Hz sampling rate, but default value in pulseaudio was 44100Hz Edit your <code class="inline">/etc/pulse/daemon.pa</code> for sampling rate adjusment.</p><pre><code>#sed &#39;s/; default-sample-rate = 48000/default-sample-rate = 44100/g&#39; -i /etc/pulse/daemon.conf</code></pre><p>After that, you can restart your Pulseaudio service, and your new sampling rate has been applied.</p>
+<img src="/media/pulseaudio_echo_cancel.png" alt="virtual microphone sink"/></p><p>Additionaly, you can also set your sound card sampling rate to minimize static noise from your microphone. My sound card has 48000Hz sampling rate, but default value in pulseaudio was 44100Hz Edit your <code class="inline">/etc/pulse/daemon.pa</code> for sampling rate adjusment.</p><pre><code>#sed &#39;s/; default-sample-rate = 48000/default-sample-rate = 44100/g&#39; -i /etc/pulse/daemon.conf</code></pre><p>After that, you can restart your Pulseaudio service, and your new sampling rate has been applied.</p></div></article></main>
+      <hr>
+      <footer>
+        
+<!--=====================================-->
+<!-- Override "includes/footer.html.eex" -->
+<!-- to customize your footer contents.  -->
+<!--=====================================-->
+
+        <p>
+          Powered by <a href="https://github.com/Dalgona/Serum">Serum</a> v1.5.1,
+          with <a href="https://github.com/Dalgona/serum-theme-essence">Essence</a> theme
+        </p>
+      </footer>
+    </div>
+    <script src="/assets/js/prism.js"></script>
   </body>
 </html>

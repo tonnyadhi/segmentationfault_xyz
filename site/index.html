@@ -3,18 +3,31 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Segfault Corner - Segmentation Fault</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    
+<!--==========================================-->
+<!-- Override "includes/head-extras.html.eex" -->
+<!-- to add more tags inside this <head> tag. -->
+<!--==========================================-->
+
   </head>
   <body>
-    <h1><a href="/">Segmentation Fault</a></h1>
-    <p>Segfault is better than Kernel Panic</p>
-    
+    <div id="wrapper">
+      <header id="top">
+<h1><a href="/">Segmentation Fault</a></h1>
+<p>Segfault is better than Kernel Panic</p>
+</header>
+      <nav>
 <ul>
   <li><a href="/index.html">Home</a></li>
   <li><a href="/posts">Posts</a></li>
 </ul>
-
-    <p><em>Scio Me Nihil Scire</em></p><p>Hello, i’m <a href="mailto:tonny@segmentationfault.xyz">Tonny Adhi Sabastian</a>, half engineer - half academician.
+</nav>
+      <hr>
+      <main><article><div><p><em>Scio Me Nihil Scire</em></p><p>Hello, i’m <a href="mailto:tonny@segmentationfault.xyz">Tonny Adhi Sabastian</a>, half engineer - half academician.
 I have more than 13 years of experiences in various fields of tech. engineering related to Operating System, Computer Networking,
 Distributed System, Software Development, HPC, Embedded System, and Cloud Computing.
 During those time, I also have experiences in teaching and academic researches.</p><p>I grew up on Free/Open Source Software (F/OSS). Previously, i and my team maintained a nationwide F/OSS at <a href="http://kambing.ui.ac.id">our university</a>.
@@ -46,6 +59,21 @@ I have also have given talks in several F/OSS conferences, such as Gnome Asia an
 </li><li>Dedy Irawan
 </li><li>Tonny Adhi Sabastian
 </li><li>Gladhi Guarddin
-</li></ul></li></ul></li></ul>
+</li></ul></li></ul></li></ul></div></article></main>
+      <hr>
+      <footer>
+        
+<!--=====================================-->
+<!-- Override "includes/footer.html.eex" -->
+<!-- to customize your footer contents.  -->
+<!--=====================================-->
+
+        <p>
+          Powered by <a href="https://github.com/Dalgona/Serum">Serum</a> v1.5.1,
+          with <a href="https://github.com/Dalgona/serum-theme-essence">Essence</a> theme
+        </p>
+      </footer>
+    </div>
+    <script src="/assets/js/prism.js"></script>
   </body>
 </html>
