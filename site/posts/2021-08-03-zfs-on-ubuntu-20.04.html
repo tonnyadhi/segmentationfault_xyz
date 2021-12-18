@@ -34,7 +34,8 @@
           Tags:
           
             <a class="tag" href="/tags/file system">file system</a><a class="tag" href="/tags/harddisk">harddisk</a><a class="tag" href="/tags/ubuntu">ubuntu</a><a class="tag" href="/tags/zfs">zfs</a><a class="tag" href="/tags/zraid">zraid</a></span></p></header><div><p>Several weeks ago, my 10 years old <a href="https://www.amazon.com/Western-Digital-Caviar-Internal-Desktop/dp/B004CSIG1G">2TB WD Black</a> disk decided to gave up. It is a single drive and not was not running on RAID configuration. Some files are still salvageable, but some are not. I still can salvage some of my graduate school writing but my undergraduate thesis file was lost forever. Luckily i still have the printed version.</p><p>Well, its time to buy new storage devices. I decided to buy another new harddisk in pair for RAID 1 configuration. My budget is still not enought to obtain large capacity SSD. I obtained a pair of <a href="https://www.toshiba-storage.com/products/toshiba-internal-hard-drives-x300/">4TB Toshiba X300</a> disks at my local e-commerce site at 110USD each. By the way, you have to be very careful when selecting new harddisk drive right now. This disk luckily still using PMR method for writing. Currently, most of cheap and high capacity disks write method are using SMR (Shingled Magnetic Recording) and not PMR (Perpendicular Magnetic Recording). SMR increase the disk capacity by overlapping new tracks with previously written tracks, In order to read those tracks, you need correction. The effect is reduced writing  speed, you have to do a bit of checksum and rewritten on the overlapping track. This practice are common before consumer got raged enough and issuing a protest to disk manufacturer. In the end, Seagate and Western Digital announce a list of their SMR and PMR product on their site. You can read a little bit about SMR and PMR disk on this <a href="https://arstechnica.com/gadgets/2020/06/western-digitals-smr-disks-arent-great-but-theyre-not-garbage/">Arstechnica article</a>. The SMR is not quite ideal for ZFS, which become my target for this new pair of disk.</p><h2 id="zfsonlinux-:-installing-zfs-modules-and-toolkit-into-ubuntu-20.04">zfsonlinux : installing zfs modules and toolkit into Ubuntu 20.04</h2><p>This new pair of Toshiba X300 will become my target for ZFS RAIDZ1. Well, why not using the traditional <code class="inline">mdadm</code> for Linux RAID ? First, i want to try ZFS because its a different animal. ZFS is a logical volume manager, a RAID system and a filesystem wrapped into one. In short, it will simplify your life. With correct tuning of ZFS recordsize, RAIDZ will also outperform traditional Linux RAID. Arstechnica has good article on <a href="https://arstechnica.com/information-technology/2020/05/zfs-101-understanding-zfs-storage-and-performance/">ZFS 101</a>, also <a href="https://arstechnica.com/gadgets/2020/05/zfs-versus-raid-eight-ironwolf-disks-two-filesystems-one-winner/">RAIDZ and traditional Linux RAID comparison</a></p><p>I used compile from source code method for this installation, because i want to try latest ZFS also to lazy to create debian package. I also used custom kernel from (Xanmod)[<a href="https://xanmod.org">https://xanmod.org</a>/]. Currently also to lazy to self compile kernel for my rig. My current kernel is <code class="inline">linux-5.13.7-xanmod1</code></p><p>Here are the steps you need to deploy zfs into your Ubuntu 20.04</p><ul><li><p>install build dependencies</p><ul><li><code class="inline">sudo apt update</code></li><li><code class="inline">sudo apt install linux-headers-5.13-7-xanmod1 build-essential libblkid-dev zlib1g-dev</code></li></ul></li><li><p>get latest zfs source code from zfsonlinux github. its on v2.1.0 when i wrote this post</p><ul><li><code class="inline">mkdir zfsonlinux &amp;&amp; cd zfsonlinux &amp;&amp; wget https://github.com/openzfs/zfs/releases/download/zfs-2.1.0/zfs-2.1.0.tar.gz</code></li><li><code class="inline">tar zxf zfs-2.1.0.tar.gz</code></li></ul></li><li><p>compile zfs source code and install </p><ul><li><code class="inline">cd zfs-2.1.0 &amp;&amp; ./configure --prefix=/</code></li><li><code class="inline">make &amp;&amp; sudo make install</code></li></ul></li><li><p>add zfs module to <code class="inline">/etc/modules-load.d/modules.conf</code>, so it can be loaded automatically during boot</p><ul><li><code class="inline">sudo su -c &quot;echo zfs &gt;&gt; /etc/modules-load.d/modules.conf</code></li></ul></li><li>done. zfs capability has been added into your kernel
-</li></ul><h2 id="zfsonlinux-:-deploying-raidz">zfsonlinux : deploying raidz</h2><ul><li><p>Adding RAIDZ1 into your zfs pool can be done like this</p><ul><li><code class="inline">sudo zpool create [pool_name] mirror [pool_devices]</code></li><li><code class="inline">sudo zpool create fenrir-pool mirror /dev/sda /dev/sdb</code></li></ul></li><li><p>Import your newly create raidz. It will be automatically mount into a directory according your pool name</p><ul><li><code class="inline">sudo zpool import fenrir-pool</code></li></ul></li><li><p>Checking your pool status</p><p>  $ zpool status</p><pre><code>pool: fenrir-pool
+</li></ul><h2 id="zfsonlinux-:-deploying-raidz">zfsonlinux : deploying raidz</h2><ul><li><p>Adding RAIDZ1 into your zfs pool can be done like this</p><ul><li><code class="inline">sudo zpool create [pool_name] mirror [pool_devices]</code></li><li><code class="inline">sudo zpool create fenrir-pool mirror /dev/sda /dev/sdb</code></li></ul></li><li><p>Import your newly create raidz. It will be automatically mount into a directory according your pool name</p><ul><li><code class="inline">sudo zpool import fenrir-pool</code></li></ul></li><li><p>Checking your pool status</p><pre><code>s$ zpool status
+pool: fenrir-pool
 state: ONLINE
 config:
   NAME         STATE     READ WRITE CKSUM
@@ -59,3 +60,26 @@ config:
     <script src="/assets/js/prism.js"></script>
   </body>
 </html>
+<script>
+const ws_url = "ws://" + location.host + "/serum_live_reloader";
+var ws;
+
+connect();
+
+function connect() {
+  ws = new WebSocket(ws_url);
+  ws.onmessage = onMessage;
+  ws.onclose = onClose;
+}
+
+function onMessage(e) {
+  if (e.data === "reload") {
+    location.reload();
+  }
+}
+
+function onClose(e) {
+  console.warn("WebSocket disconnected from server. Reconnecting in 10 seconds.");
+  setTimeout(connect, 10000)
+}
+</script>

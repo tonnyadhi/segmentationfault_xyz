@@ -12,9 +12,13 @@ During those time, I also have experiences in teaching and academic researches.
 I grew up on Free/Open Source Software (F/OSS). Previously, i and my team maintained a nationwide F/OSS at [our university](http://kambing.ui.ac.id).
 I have also have given talks in several F/OSS conferences, such as Gnome Asia and OpenSuse Asia
 
-Currently, i work at [MAPAN](https://mapan.io) (part of [GOJEK](https://gojek.com) group) as Technical Architect and DevOps consultant.
+After that, i served at [MAPAN](https://mapan.io) (part of [GOJEK](https://gojek.com) group) as Technical Architect and DevOps engineer. 
+
+Currently, i work at [KoinWorks](https://koinworks.com) as App Architect. Beside that, i also do some DevOps and  System Architecture consultancies.
 
 My topics of interests are Operating System, Pervasive Computing, High Performance System, Distributed and Cloud Computing, also Embedded System.
+
+You can access my full resume [here](https://docs.google.com/document/d/152VCtDBozBfo5OG61Ysq1v6gX7RvgKIz2iaoTi5DeBA)
 
 ## List of Talks, Seminars and Articles
 + Talks and Seminar
@@ -30,6 +34,8 @@ My topics of interests are Operating System, Pervasive Computing, High Performan
   - [Single Sign On Services with Free/Open Source Software. Presented at Open Suse Asia 2017, Tokyo, October 22nd 2017](https://docs.google.com/presentation/d/15DlO670wIzGYaGMhKcW9aGANr2O15UTYSKsiKL0oMQE/edit?usp=sharing)
   - [SSO Services with Free/Open Source Software - The Hassle of Updating into CAS 5 -. Presented at Open Suse Asia 2018, August 11th 2018](https://docs.google.com/presentation/d/1RLGpHnNjacjwh35vJIc9pwj8muzTlBK874wLBKACGkU/edit?usp=sharing)
   - [Delivering High Quality Elixir Code into your Production Line. Konpeti Gerak dari Rumah for COVID 19 Charity. April 2020](https://docs.google.com/presentation/d/1FIQCjWOEBa5YyyufhTZ35TgX6osfjzZKfRUJqtAy6sE/edit?usp=sharing)
+  - [Adopting Open Telemetry as Distributed Tracer. Indonesia Open Infrastructure Day 2020](https://www.slideshare.net/tonnysabastian/adopting-open-telemetry-as-distributed-tracer-on-your-microservices-at-kubernetes)
+  - [Introduction to Open Telemetry as Observability Library. OpenInfra Day Asia 2021](https://www.slideshare.net/tonnysabastian/introduction-to-open-telemetry-as-observability-library)
 
 + Magazine Articles
   - Mengenal IPv6 dan Implementasinya Pada GNU/Linux Untuk Menyambut World IPv6 Launch Day. “InfoLinux Edisi 05 Tahun 2012”
