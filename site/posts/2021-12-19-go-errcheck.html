@@ -1,0 +1,84 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Go Errcheck - Segmentation Fault</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    
+<!--==========================================-->
+<!-- Override "includes/head-extras.html.eex" -->
+<!-- to add more tags inside this <head> tag. -->
+<!--==========================================-->
+
+  </head>
+  <body>
+    <div id="wrapper">
+      <header id="top">
+<h1><a href="/">Segmentation Fault</a></h1>
+<p>Segfault is better than Kernel Panic</p>
+</header>
+      <nav>
+<ul>
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/posts">Posts</a></li>
+</ul>
+</nav>
+      <hr>
+      <main><article class="post"><header><h1 id="go-errcheck">Go Errcheck</h1><p>
+      Sunday, 19 Dec 2021
+      
+        <span class="tags">
+          Tags:
+          
+            <a class="tag" href="/tags/error check">error check</a><a class="tag" href="/tags/error handling">error handling</a><a class="tag" href="/tags/golang">golang</a></span></p></header><div><p>Today i learned on <a href="https://github.com/kisielk/errcheck">go-errcheck</a>. This small utility is quite handy to check unchecked error handling in our code.
+I found out this tool when refreshing my Go lesson on <a href="https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/pointers-and-errors">Learning Go With Tests</a> during error handling chapter.</p><h2 id="installation">Installation</h2><p>go-errcheck need go 1.12 or newer.</p><p>Installation on go &lt;= 1.17
+<code class="inline">go get -u github.com/kisielk/errcheck</code></p><p>Installation on  go &gt;= 1.17
+<code class="inline">go install github.com/kisielk/errcheck@lates</code></p><p>If you are using asdf as package manager like me, don’t forget to add your $GOROOT/bin into the path
+<code class="inline">export PATH=$PATH:$HOME/.asdf/installs/golang/1.17.2/packages/bin</code></p><h2 id="usage">Usage</h2><p>Check current directory
+<code class="inline">errcheck .</code></p><p>Check all packages  beneath  current  directory
+<code class="inline">errcheck all</code></p><p>Check package of interest
+<code class="inline">errcheck github.com/kisielk/errcheck/testdata</code></p><p>If there is unhandled error, it  will reporting back to you
+<code class="inline">wallet_test.go:17:18: wallet.Withdraw(Bitcoin(10))</code></p></div></article></main>
+      <hr>
+      <footer>
+        
+<!--=====================================-->
+<!-- Override "includes/footer.html.eex" -->
+<!-- to customize your footer contents.  -->
+<!--=====================================-->
+
+        <p>
+          Powered by <a href="https://github.com/Dalgona/Serum">Serum</a> v1.5.1,
+          with <a href="https://github.com/Dalgona/serum-theme-essence">Essence</a> theme
+        </p>
+      </footer>
+    </div>
+    <script src="/assets/js/prism.js"></script>
+  </body>
+</html>
+<script>
+const ws_url = "ws://" + location.host + "/serum_live_reloader";
+var ws;
+
+connect();
+
+function connect() {
+  ws = new WebSocket(ws_url);
+  ws.onmessage = onMessage;
+  ws.onclose = onClose;
+}
+
+function onMessage(e) {
+  if (e.data === "reload") {
+    location.reload();
+  }
+}
+
+function onClose(e) {
+  console.warn("WebSocket disconnected from server. Reconnecting in 10 seconds.");
+  setTimeout(connect, 10000)
+}
+</script>
