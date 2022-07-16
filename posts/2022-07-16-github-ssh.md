@@ -22,11 +22,11 @@ And, mostly my problem are gone after this.
 
 `cat /etc/ssh/ssh_config`
 
-`
+```
 Host github.com
   Hostname ssh.github.com
   Port 443
   User git
   TCPKeepAlive yes
-`
+```
 

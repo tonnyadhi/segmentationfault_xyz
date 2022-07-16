@@ -36,7 +36,11 @@
             <a class="tag" href="/tags/github">github</a><a class="tag" href="/tags/internet problem">internet problem</a><a class="tag" href="/tags/ssh">ssh</a></span></p></header><div><p>At about several weeks ago, another ISP (Biznet) just expand their service into my housing area. It service definitely better and faster than that regular state owned ISP (aka IndhiHome)
 So, i decided to subscribed to them and do load balance on my home Mikrotik gateway. IndiHome become my secondary gateway</p><p>I also upgraded my home WiFi from 802.11ac to 802.11ax.</p><p>Several day after that, i start experiencing hiccup on my git operation to GitHub. I didn’t find out what the exact cause, but my git operation were using Git+SSH into GitHub.</p><p>Today i learned on <a href="https://github.com/kisielk/errcheck">go-errcheck</a>. This small utility is quite handy to check unchecked error handling in our code.
 I found out this tool when refreshing my Go lesson on <a href="https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/pointers-and-errors">Learning Go With Tests</a> during error handling chapter.</p><h2 id="solution-notes">Solution Notes</h2><p>From this <a href="https://stackoverflow.com/questions/15589682/ssh-connect-to-host-github-com-port-22-connection-timed-out">stackoverflow thread</a>, ssh client should be set into using port 443.
-And, mostly my problem are gone after this.</p><p><code class="inline">cat /etc/ssh/ssh_config</code></p><p><code class="inline">Host github.com Hostname ssh.github.com Port 443 User git TCPKeepAlive yes</code></p></div></article></main>
+And, mostly my problem are gone after this.</p><p><code class="inline">cat /etc/ssh/ssh_config</code></p><pre><code class="">Host github.com
+  Hostname ssh.github.com
+  Port 443
+  User git
+  TCPKeepAlive yes</code></pre></div></article></main>
       <hr>
       <footer>
         
