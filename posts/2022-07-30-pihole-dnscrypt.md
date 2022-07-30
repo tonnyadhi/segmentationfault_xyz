@@ -55,74 +55,72 @@ We're basically done with basic OS, and now lets get into deploying Pi-Hole.
 
 ### Deploying Pi-Hole
 
-1) Fetch latest Pi-Hole from its repository
-   ```bash
-   git clone https://github.com/pi-hole/pi-hole.git Pi-hole  
-   ```
+- Fetch latest Pi-Hole from its repository
+  ```bash
+  git clone https://github.com/pi-hole/pi-hole.git Pi-hole  
+  ```
 
-2) Change to the installation directory
-   ```bash
-   cd "Pi-hole/automated install"
-   ```
+- Change to the installation directory
+  ```bash
+  cd "Pi-hole/automated install"
+  ```
 
-3) Run the installation script
-   ```bash
-   chmod +x basic-install.sh
-   sudo bash basic-install.sh
-   ```
-4) Accept the default configuration and set a password for Pi-hole login. We will change this configuration later on.
+- Run the installation script
+  ```bash
+  chmod +x basic-install.sh
+  sudo bash basic-install.sh
+  ```
+- Accept the default configuration and set a password for Pi-hole login. We will change this configuration later on.
 
-5) After the installation finished, you can login into your Pi-hole by accessing Pi-Hole admin page on `http://YOUR-PI-HOLE-IP/admin/index.php`. 
-   Access the dashboard via password that has been set during installation. 
-   I do not use TLS here, because i limit the access for the Pi-Hole admin page using iptables. But, you might also want to add it.
-   Self signed certificate should be suffice. Pi-Hole use `lighttpd` for web server, so you can configure your certificate there.
-   ![Pi-Hole Dashboard](/media/pihole1.png)
+- After the installation finished, you can login into your Pi-hole by accessing Pi-Hole admin page on `http://YOUR-PI-HOLE-IP/admin/index.php`. 
+  Access the dashboard via password that has been set during installation. 
+  I do not use TLS here, because i limit the access for the Pi-Hole admin page using iptables. But, you might also want to add it.
+  Self signed certificate should be suffice. Pi-Hole use `lighttpd` for web server, so you can configure your certificate there.
+  ![Pi-Hole Dashboard](/media/pihole1.png)
 
-6) Go to `Settings --> DHCP` if you want to use your Pi-Hole also as your home network DHCP Server, like i did/
+- Go to `Settings --> DHCP` if you want to use your Pi-Hole also as your home network DHCP Server, like i did/
 
-7) Add your tracker and add blocklists on `Group Management --> Adlists`. 
-   [Firebog](https://firebog.net/) is one of nice blocklists collection that you can use. 
-   [Techno Tim](https://www.youtube.com/watch?v=0wpn3rXTe0g&ab_channel=TechnoTim) have a nice video tutorial on using Firebog as your blocklists source.
+- Add your tracker and add blocklists on `Group Management --> Adlists`. 
+  [Firebog](https://firebog.net/) is one of nice blocklists collection that you can use. 
+  [Techno Tim](https://www.youtube.com/watch?v=0wpn3rXTe0g&ab_channel=TechnoTim) have a nice video tutorial on using Firebog as your blocklists source.
 
-8) Go to `Settings --> DNS` to set your upstream DNS Server. 
-   But, if you are using our proud Telkom Indihome as your ISPs, you should set DNSCrypt as your upstream server. 
-   We will discuss it on the next section.
+- Go to `Settings --> DNS` to set your upstream DNS Server. 
+  But, if you are using our proud Telkom Indihome as your ISPs, you should set DNSCrypt as your upstream server. 
+  We will discuss it on the next section.
 
 You can also peek [Privacy International](https://privacyinternational.org/guide-step/4341/raspberry-pi-setup-and-run-pi-hole) or [RIPE Network](https://labs.ripe.net/author/johannes_weber/pi-hole-installation-guide/) for another good instruction on deploying your Pi-Hole.
 
 ### Deploying DNSCrypt Proxy
 
-1) Go fetch latest release on DNSCrypt Proxy. When i wrote this, the latest release is `2.1.1`
-   ```bash
-   cd /opt 
-   sudo wget https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/2.1.1/dnscrypt-proxy-linux_x86_64-2.1.1.tar.gz
-   ```
+- Go fetch latest release on DNSCrypt Proxy. When i wrote this, the latest release is `2.1.1`
+  ```bash
+  cd /opt 
+  sudo wget https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/2.1.1/dnscrypt-proxy-linux_x86_64-2.1.1.tar.gz
+  ```
 
-2) Unarchive the downloaded archive
-   ```bash
-   sudo tar -xvzf ./dnscrypt-proxy-linux_arm64-2.1.1.tar.gz
-   mv linux-x86_64 dnscrypt_proxy
-   cd dnscrypt_proxy
-   ```
+- Unarchive the downloaded archive
+  ```bash
+  sudo tar -xvzf ./dnscrypt-proxy-linux_arm64-2.1.1.tar.gz
+  mv linux-x86_64 dnscrypt_proxy
+  cd dnscrypt_proxy
+  ```
 
-3) Create configuration from example. The most important part are you set your DNS over HTTPS (DoH) upstream and your listen address. You can peek for more DoH upstream 
-   on [DNSCrypt Proxy Public Servers List](https://github.com/dnscrypt/dnscrypt-resolvers)
-   ```bash
-   sudo cp example-dnscrypt-proxy.toml dnscrypt-proxy.toml
-   ```
-   ```bash
-   vi dnscrypt-proxy.toml
-   ...
-   server_names = ['dnswarden-uncensor-sg1-doh', 'doh.tiarap.org', 'cloudflare', 'google']
-   listen_addresses = ['127.0.0.1:6666', '[::1]:6666']
-   ...
-   ```
+- Create configuration from example. The most important part are you set your DNS over HTTPS (DoH) upstream and your listen address. You can peek for more DoH upstream 
+  on [DNSCrypt Proxy Public Servers List](https://github.com/dnscrypt/dnscrypt-resolvers)
+  ```bash
+  sudo cp example-dnscrypt-proxy.toml dnscrypt-proxy.toml
+  ```
+  ```bash
+  vi dnscrypt-proxy.toml
+  
+  server_names = ['dnswarden-uncensor-sg1-doh', 'doh.tiarap.org', 'cloudflare', 'google']
+  listen_addresses = ['127.0.0.1:6666', '[::1]:6666']
+  
+  ```
 
-4) A full example of `dnscrypt-proxy.toml` example can be viewed also at [pengelana / doh.tiar.app github](https://github.com/pengelana/blocklist/blob/master/dnscrypt-proxy/v2/dnscrypt-proxy.toml)
+- A full example of `dnscrypt-proxy.toml` example can be viewed also at [pengelana / doh.tiar.app github](https://github.com/pengelana/blocklist/blob/master/dnscrypt-proxy/v2/dnscrypt-proxy.toml)
 
-5) Put your DNSCrypt Proxy upstream on your Pi-Hole via `Settings --> DNS` admin page.
-   ![Pi-Hole DNS Upstream](/media/pihole2.png)
+- Put your DNSCrypt Proxy upstream on your Pi-Hole via `Settings --> DNS` admin page.
+  ![Pi-Hole DNS Upstream](/media/pihole2.png)
 
-6) Enjoy
-
-
+- Enjoy
