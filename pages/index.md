@@ -36,6 +36,7 @@ You can access my full resume [here](https://docs.google.com/document/d/152VCtDB
   - [Delivering High Quality Elixir Code into your Production Line. Konpeti Gerak dari Rumah for COVID 19 Charity. April 2020](https://docs.google.com/presentation/d/1FIQCjWOEBa5YyyufhTZ35TgX6osfjzZKfRUJqtAy6sE/edit?usp=sharing)
   - [Adopting Open Telemetry as Distributed Tracer. Indonesia Open Infrastructure Day 2020](https://www.slideshare.net/tonnysabastian/adopting-open-telemetry-as-distributed-tracer-on-your-microservices-at-kubernetes)
   - [Introduction to Open Telemetry as Observability Library. OpenInfra Day Asia 2021](https://www.slideshare.net/tonnysabastian/introduction-to-open-telemetry-as-observability-library)
+  - [The Story of Microservices. Universitas Persada Indonesia YAI - Kalbis Institute - Aug. 2021](https://www.slideshare.net/tonnysabastian/thestoryofmicroservicesyaikalbispdf)
 
 + Magazine Articles
   - Mengenal IPv6 dan Implementasinya Pada GNU/Linux Untuk Menyambut World IPv6 Launch Day. “InfoLinux Edisi 05 Tahun 2012”

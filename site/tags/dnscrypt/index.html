@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Posts Tagged dnscrypt - Segmentation Fault</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    
+<!--==========================================-->
+<!-- Override "includes/head-extras.html.eex" -->
+<!-- to add more tags inside this <head> tag. -->
+<!--==========================================-->
+
+  </head>
+  <body>
+    <div id="wrapper">
+      <header id="top">
+<h1><a href="/">Segmentation Fault</a></h1>
+<p>Segfault is better than Kernel Panic</p>
+</header>
+      <nav>
+<ul>
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/posts">Posts</a></li>
+</ul>
+</nav>
+      <hr>
+      <main><article class="list"><header><h1 id="posts-tagged-dnscrypt">Posts Tagged dnscrypt</h1></header><div><ul><li class="article"><h2 id="dnscrypt-and-pi-hole-as-your-home-dns-service-on-raspberry-pi-"><a href="/posts/2022-07-30-pihole-dnscrypt.html">DNSCrypt and Pi-Hole as Your Home DNS Service on Raspberry Pi</a><br/></h2><p class="post-date">
+            Saturday, 30 Jul 2022
+            
+              <span class="tags">
+                Tags:
+                
+                  <a class="tag" href="/tags/dnscrypt">dnscrypt</a><a class="tag" href="/tags/internet sehat">internet sehat</a><a class="tag" href="/tags/kominfo">kominfo</a><a class="tag" href="/tags/pi-hole">pi-hole</a><a class="tag" href="/tags/raspberry pi">raspberry pi</a></span></p><p class="post-preview">As a citizen of Indonesia, we have just to accept that most of our broadband ISPs are censoring our DNS Query in the name of “Internet Sehat” (aka Healty Internet). A stupid policy created by our grea…</p></li></ul></div><ul class="pagination"><li><span class="page-button current">1</span></li></ul></article></main>
+      <hr>
+      <footer>
+        
+<!--=====================================-->
+<!-- Override "includes/footer.html.eex" -->
+<!-- to customize your footer contents.  -->
+<!--=====================================-->
+
+        <p>
+          Powered by <a href="https://github.com/Dalgona/Serum">Serum</a> v1.5.1,
+          with <a href="https://github.com/Dalgona/serum-theme-essence">Essence</a> theme
+        </p>
+      </footer>
+    </div>
+    <script src="/assets/js/prism.js"></script>
+  </body>
+</html>
+<script>
+const ws_url = "ws://" + location.host + "/serum_live_reloader";
+var ws;
+
+connect();
+
+function connect() {
+  ws = new WebSocket(ws_url);
+  ws.onmessage = onMessage;
+  ws.onclose = onClose;
+}
+
+function onMessage(e) {
+  if (e.data === "reload") {
+    location.reload();
+  }
+}
+
+function onClose(e) {
+  console.warn("WebSocket disconnected from server. Reconnecting in 10 seconds.");
+  setTimeout(connect, 10000)
+}
+</script>
