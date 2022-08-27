@@ -12,9 +12,9 @@ During those time, I also have experiences in teaching and academic researches.
 I grew up on Free/Open Source Software (F/OSS). Previously, i and my team maintained a nationwide F/OSS at [our university](http://kambing.ui.ac.id).
 I have also have given talks in several F/OSS conferences, such as Gnome Asia and OpenSuse Asia
 
-After that, i served at [MAPAN](https://mapan.io) (part of [GOJEK](https://gojek.com) group) as Technical Architect and DevOps engineer. 
+After that, i served at [MAPAN](https://mapan.io) (part of [GOJEK](https://gojek.com) group) as Technical Architect and DevOps engineer. I then served at [KoinWorks](https://koinworks.com) as App Architect, but only for short time.
 
-Currently, i work at [KoinWorks](https://koinworks.com) as App Architect. Beside that, i also do some DevOps and  System Architecture consultancies.
+Currently, i work at [Stockbit](https://stockbit.com) as Principal System Engineer. Beside that, i also do some DevOps and  System Architecture consultancies.
 
 My topics of interests are Operating System, Pervasive Computing, High Performance System, Distributed and Cloud Computing, also Embedded System.
 

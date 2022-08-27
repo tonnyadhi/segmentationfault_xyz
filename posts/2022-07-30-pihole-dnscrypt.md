@@ -15,7 +15,7 @@ Telkom as our BGP peer done this to us. They make reason in the name of blocking
 your critical thinking and push the knowledge boundaries further -. Its not a place for censorship. In the name of research ( yes, true research not for your personal desires ), some Sociology students, or 
 Pychology students, or event Health faculties might need access to those contents. In order to get their views on latest socio development or maybe missbehaviour conduct that happened in society, to study them. In other hand, our internet access also become slower because our traffic got redirected to those slow response Telkom DNS. 
 
-In the end, we submitted a protest letter to Telkom and our DNS redirection got lifted. This events was during 2015 (or 2016) during my time in Universitas Indonesia data center.
+In the end, we submitted a protest letter to Telkom and our DNS redirection got lifted. This events was during 2015 (or 2016), when i was in Universitas Indonesia data center.
 
 
 Okay, enough for the backstory. Lets discuss the tools that we want to use in our home network for bypassing those blockade. They are [Pi-Hole](https://pi-hole.net/) and [DNSCrypt Proxy](https://github.com/DNSCrypt/dnscrypt-proxy)

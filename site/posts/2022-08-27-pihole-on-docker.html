@@ -1,0 +1,147 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>DNSCrypt and Pi-Hole on Docker - Segmentation Fault</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    
+<!--==========================================-->
+<!-- Override "includes/head-extras.html.eex" -->
+<!-- to add more tags inside this <head> tag. -->
+<!--==========================================-->
+
+  </head>
+  <body>
+    <div id="wrapper">
+      <header id="top">
+<h1><a href="/">Segmentation Fault</a></h1>
+<p>Segfault is better than Kernel Panic</p>
+</header>
+      <nav>
+<ul>
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/posts">Posts</a></li>
+</ul>
+</nav>
+      <hr>
+      <main><article class="post"><header><h1 id="dnscrypt-and-pi-hole-on-docker">DNSCrypt and Pi-Hole on Docker</h1><p>
+      Saturday, 27 Aug 2022
+      
+        <span class="tags">
+          Tags:
+          
+            <a class="tag" href="/tags/dnscrypt">dnscrypt</a><a class="tag" href="/tags/docker">docker</a><a class="tag" href="/tags/pi-hole">pi-hole</a></span></p></header><div><p>Lately, i bought an <a href="https://www.asus.com/Displays-Desktops/Mini-PCs/PN-series/Mini-PC-PN51-S1/">ASUS PN51</a> mini pc with Ryzen 7 5700U, 32GB of RAM and 1TB of NVME storage. I planned to use this mini pc for my home server. This home server with become my test bed for virtual kubernetes cluster using <a href="https://k3s.io/">k3s</a>.</p><p>I also planned to host some of my home service their, such as OwnCloud, Home Assistant, and of course secondary Pi-Hole server at my home network. This Pi-Hole will run of top Docker / Containerd.</p><h2 id="docker-deployment-of-pi-hole-and-dnscrypt-proxy">Docker Deployment of Pi-Hole and DNSCrypt Proxy</h2><p>Create a docker compose file that will serve us as template to run Pi-Hole and DNSCrypt Proxy. Bridge Pi-Hole network into Host Network using mac-vlan. Here is the docker compose file that i used :</p><pre><code class="yaml">version: &quot;3&quot;
+services:
+  dnscrypt:
+    image: klutchell/dnscrypt-proxy:latest
+    #cap_add:
+    #  - NET_ADMIN
+    volumes:
+      - &#39;./dnscrypt-proxy/:/config&#39;
+    environment:
+      TZ: Asia/Jakarta
+    expose:
+      - 6666/udp
+      - 6666/tcp
+    dns:
+      - 1.1.1.1
+    networks:
+      pihole-internal:
+        ipv4_address: &#39;10.0.1.2&#39;
+  pihole:
+    image: pihole/pihole:latest
+    restart: unless-stopped
+    #cap_add:
+    #    - NET_ADMIN
+    dns:
+      - 10.0.1.2#5300
+      - 10.10.10.224
+    environment:
+      ServerIP: 10.10.10.231
+      DNS1: 10.0.1.2#6666
+      DNS2: 10.10.10.224
+      VIRTUAL_HOST: pi.hole.secondary
+      DNSMASQ_LISTENING: all
+      TZ: Asia/Jakarta
+      WEBPASSWORD: xyzabc@12345346 
+    volumes:
+      - &#39;./pihole/pihole/:/etc/pihole/&#39;
+      - &#39;./pihole/dnsmasq.d/:/etc/dnsmasq.d/&#39;
+    ports: # expose all pihole ports.
+      - 443/tcp
+      - 53/tcp
+      - 53/udp
+      - 67/udp
+      - 80/tcp
+    depends_on:
+      - dnscrypt
+    networks:
+      backend:
+        ipv4_address: &#39;10.10.10.231&#39;
+      pihole-internal:
+        ipv4_address: &#39;10.0.1.3&#39;
+
+networks:
+  backend:
+    driver: macvlan
+    driver_opts:
+      parent: enp2s0 # change this
+    ipam:
+      config:
+        - subnet: &quot;10.10.10.0/24&quot; # change this
+          gateway: &quot;10.10.10.1&quot; # change this (optional)
+  pihole-internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.1.0/24
+</code></pre><p>This is the <code class="inline">dnscrypt-proxy.toml</code> that i used :</p><pre><code class="toml">...
+server_names = [&#39;dnswarden-uncensor-sg1-doh&#39;, &#39;doh.tiarap.org&#39;, &#39;cloudflare&#39;, &#39;google&#39;]
+listen_addresses = [&#39;0.0.0.0:6666&#39;]
+...</code></pre><p>After that, just run the docker compose with :</p><pre><code class="bash">docker compose up -d</code></pre><p>Enjoy. You now have secondary Pi-Hole at your home network.</p><p>On the primary Pi-Hole that you used as DHCP Server, at the secondary server IP Address on your DHCP configuration :</p><pre><code class="bash">sudo vi /etc/dnsmasq.d/02-pihole-dhcp.conf
+...
+dhcp-option=option:dns-server,10.10.10.224,10.10.10.231
+...</code></pre></div></article></main>
+      <hr>
+      <footer>
+        
+<!--=====================================-->
+<!-- Override "includes/footer.html.eex" -->
+<!-- to customize your footer contents.  -->
+<!--=====================================-->
+
+        <p>
+          Powered by <a href="https://github.com/Dalgona/Serum">Serum</a> v1.5.1,
+          with <a href="https://github.com/Dalgona/serum-theme-essence">Essence</a> theme
+        </p>
+      </footer>
+    </div>
+    <script src="/assets/js/prism.js"></script>
+  </body>
+</html>
+<script>
+const ws_url = "ws://" + location.host + "/serum_live_reloader";
+var ws;
+
+connect();
+
+function connect() {
+  ws = new WebSocket(ws_url);
+  ws.onmessage = onMessage;
+  ws.onclose = onClose;
+}
+
+function onMessage(e) {
+  if (e.data === "reload") {
+    location.reload();
+  }
+}
+
+function onClose(e) {
+  console.warn("WebSocket disconnected from server. Reconnecting in 10 seconds.");
+  setTimeout(connect, 10000)
+}
+</script>
