@@ -18,7 +18,7 @@ Currently, i work at [Stockbit](https://stockbit.com) as Principal System Engine
 
 My topics of interests are Operating System, Pervasive Computing, High Performance System, Distributed and Cloud Computing, also Embedded System.
 
-You can access my full resume [here](https://docs.google.com/document/d/152VCtDBozBfo5OG61Ysq1v6gX7RvgKIz2iaoTi5DeBA)
+You can access my full resume [here](https://docs.google.com/document/d/1rtork8KJbKw5-J9YK7RV49-pySj1yx_TIZR_RdPB86Y)
 
 ## List of Talks, Seminars and Articles
 + Talks and Seminar
