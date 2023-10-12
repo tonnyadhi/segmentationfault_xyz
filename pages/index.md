@@ -37,6 +37,7 @@ You can access my full resume [here](https://docs.google.com/document/d/1rtork8K
   - [Adopting Open Telemetry as Distributed Tracer. Indonesia Open Infrastructure Day 2020](https://www.slideshare.net/tonnysabastian/adopting-open-telemetry-as-distributed-tracer-on-your-microservices-at-kubernetes)
   - [Introduction to Open Telemetry as Observability Library. OpenInfra Day Asia 2021](https://www.slideshare.net/tonnysabastian/introduction-to-open-telemetry-as-observability-library)
   - [The Story of Microservices. Universitas Persada Indonesia YAI - Kalbis Institute - Aug. 2021](https://www.slideshare.net/tonnysabastian/thestoryofmicroservicesyaikalbispdf)
+  - [Exploring GNU/Linux Evolution in Gaming - With a Side of Steamdeck - Ubuntu AsiaxLibre Office Conference - October. 2023](https://docs.google.com/presentation/d/1VtRLPfc_S29vKXWc4oHlhDpbntVQvORv1MxQdSqeXJc/edit?usp=sharing)
 
 + Magazine Articles
   - Mengenal IPv6 dan Implementasinya Pada GNU/Linux Untuk Menyambut World IPv6 Launch Day. “InfoLinux Edisi 05 Tahun 2012”
