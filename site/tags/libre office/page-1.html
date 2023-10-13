@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Posts Tagged libre office - Segmentation Fault</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    
+<!--==========================================-->
+<!-- Override "includes/head-extras.html.eex" -->
+<!-- to add more tags inside this <head> tag. -->
+<!--==========================================-->
+
+  </head>
+  <body>
+    <div id="wrapper">
+      <header id="top">
+<h1><a href="/">Segmentation Fault</a></h1>
+<p>Segfault is better than Kernel Panic</p>
+</header>
+      <nav>
+<ul>
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/posts">Posts</a></li>
+</ul>
+</nav>
+      <hr>
+      <main><article class="list"><header><h1 id="posts-tagged-libre-office">Posts Tagged libre office</h1></header><div><ul><li class="article"><h2 id="ubuntu-asia-x-libre-office-asia-2023-conference-"><a href="/posts/2023-08-13-ubuntu-asia-2023.html">Ubuntu Asia x Libre Office Asia 2023 Conference</a><br/></h2><p class="post-date">
+            Friday, 13 Oct 2023
+            
+              <span class="tags">
+                Tags:
+                
+                  <a class="tag" href="/tags/f/oss conference">f/oss conference</a><a class="tag" href="/tags/gnu/linux gaming">gnu/linux gaming</a><a class="tag" href="/tags/kernel">kernel</a><a class="tag" href="/tags/libre office">libre office</a><a class="tag" href="/tags/open source">open source</a><a class="tag" href="/tags/steam deck">steam deck</a><a class="tag" href="/tags/ubuntu">ubuntu</a></span></p><p class="post-preview">During last weekend on October 07 - 08, 2023. I was attending Ubuntu Asia x Libre Office Asia Conference . This is the first post pandemic F/OSS conference on Asia level held in Indonesia. The venue f…</p></li></ul></div><ul class="pagination"><li><span class="page-button current">1</span></li></ul></article></main>
+      <hr>
+      <footer>
+        
+<!--=====================================-->
+<!-- Override "includes/footer.html.eex" -->
+<!-- to customize your footer contents.  -->
+<!--=====================================-->
+
+        <p>
+          Powered by <a href="https://github.com/Dalgona/Serum">Serum</a> v1.5.1,
+          with <a href="https://github.com/Dalgona/serum-theme-essence">Essence</a> theme
+        </p>
+      </footer>
+    </div>
+    <script src="/assets/js/prism.js"></script>
+  </body>
+</html>
+<script>
+const ws_url = "ws://" + location.host + "/serum_live_reloader";
+var ws;
+
+connect();
+
+function connect() {
+  ws = new WebSocket(ws_url);
+  ws.onmessage = onMessage;
+  ws.onclose = onClose;
+}
+
+function onMessage(e) {
+  if (e.data === "reload") {
+    location.reload();
+  }
+}
+
+function onClose(e) {
+  console.warn("WebSocket disconnected from server. Reconnecting in 10 seconds.");
+  setTimeout(connect, 10000)
+}
+</script>
