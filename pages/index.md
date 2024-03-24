@@ -14,7 +14,9 @@ I have also have given talks in several F/OSS conferences, such as Gnome Asia, O
 
 After that, i served at [MAPAN](https://mapan.io) (part of [GOJEK](https://gojek.com) group) as Technical Architect and DevOps engineer. I then served at [KoinWorks](https://koinworks.com) as App Architect, but only for short time.
 
-Currently, i work at [Stockbit](https://stockbit.com) as Principal System Engineer. Beside that, i also do some DevOps and  System Architecture consultancies.
+I stayed at [Stockbit](https://stockbit.com) for one and half years as Principal System Engineer. I was building Stockbit prototype for Cryptocurrency Exchange with my team.
+
+Currently, i work at [Pintu](https://pintu.co.id) SRE Tech Lead Specialist. Beside that, i also do some DevOps and  System Architecture consultancies.
 
 My topics of interests are Operating System, Pervasive Computing, High Performance System, Distributed and Cloud Computing, also Embedded System.
 
