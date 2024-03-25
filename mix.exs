@@ -5,7 +5,7 @@ defmodule SegmentationFaultSite.MixFile do
     [
       app: :segmentation_fault_site,
       version: "0.1.0",
-      elixir: "~> 1.16",
+      elixir: "~> 1.10",
       start_permanent: Mix.env == :prod,
       deps: deps()
     ]
@@ -19,9 +19,9 @@ defmodule SegmentationFaultSite.MixFile do
 
   defp deps do
     [
-      {:serum, "~> 1.5"},
+      {:serum, "~> 1.5", override: true},
       {:serum_theme_essence, "~> 1.0"},
-      #{:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
     ]
   end
 end

@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Posts Tagged digital ocean - Segmentation Fault</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    
+<!--==========================================-->
+<!-- Override "includes/head-extras.html.eex" -->
+<!-- to add more tags inside this <head> tag. -->
+<!--==========================================-->
+
+  </head>
+  <body>
+    <div id="wrapper">
+      <header id="top">
+<h1><a href="/">Segmentation Fault</a></h1>
+<p>Segfault is better than Kernel Panic</p>
+</header>
+      <nav>
+<ul>
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/posts">Posts</a></li>
+</ul>
+</nav>
+      <hr>
+      <main><article class="list"><header><h1 id="posts-tagged-digital-ocean">Posts Tagged digital ocean</h1></header><div><ul><li class="article"><h2 id="enabling-letsencrypt-auto-renew-for-local-domain-via-digital-ocean-"><a href="/posts/2024-03-24-letsencrypt-with-digital-ocean.html">Enabling LetsEncrypt Auto Renew for Local Domain via Digital Ocean</a><br/></h2><p class="post-date">
+            Sunday, 24 Mar 2024
+            
+              <span class="tags">
+                Tags:
+                
+                  <a class="tag" href="/tags/digital ocean">digital ocean</a><a class="tag" href="/tags/gnu/linux">gnu/linux</a><a class="tag" href="/tags/home server">home server</a><a class="tag" href="/tags/letsencrypt">letsencrypt</a><a class="tag" href="/tags/raspberry pi">raspberry pi</a><a class="tag" href="/tags/ubuntu">ubuntu</a></span></p><p class="post-preview">I have build home server using Raspberry Pi 4 since a few months ago. This home server host several services for my home network, such as DNSCrypt , Home Assistant and RIPE Atlas Client . This server …</p></li></ul></div><ul class="pagination"><li><span class="page-button current">1</span></li></ul></article></main>
+      <hr>
+      <footer>
+        
+<!--=====================================-->
+<!-- Override "includes/footer.html.eex" -->
+<!-- to customize your footer contents.  -->
+<!--=====================================-->
+
+        <p>
+          Powered by <a href="https://github.com/Dalgona/Serum">Serum</a> v1.5.1,
+          with <a href="https://github.com/Dalgona/serum-theme-essence">Essence</a> theme
+        </p>
+      </footer>
+    </div>
+    <script src="/assets/js/prism.js"></script>
+  </body>
+</html>
+<script>
+const ws_url = "ws://" + location.host + "/serum_live_reloader";
+var ws;
+
+connect();
+
+function connect() {
+  ws = new WebSocket(ws_url);
+  ws.onmessage = onMessage;
+  ws.onclose = onClose;
+}
+
+function onMessage(e) {
+  if (e.data === "reload") {
+    location.reload();
+  }
+}
+
+function onClose(e) {
+  console.warn("WebSocket disconnected from server. Reconnecting in 10 seconds.");
+  setTimeout(connect, 10000)
+}
+</script>

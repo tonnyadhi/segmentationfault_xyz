@@ -1,0 +1,93 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Enabling LetsEncrypt Auto Renew for Local Domain via Digital Ocean - Segmentation Fault</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    
+<!--==========================================-->
+<!-- Override "includes/head-extras.html.eex" -->
+<!-- to add more tags inside this <head> tag. -->
+<!--==========================================-->
+
+  </head>
+  <body>
+    <div id="wrapper">
+      <header id="top">
+<h1><a href="/">Segmentation Fault</a></h1>
+<p>Segfault is better than Kernel Panic</p>
+</header>
+      <nav>
+<ul>
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/posts">Posts</a></li>
+</ul>
+</nav>
+      <hr>
+      <main><article class="post"><header><h1 id="enabling-letsencrypt-auto-renew-for-local-domain-via-digital-ocean">Enabling LetsEncrypt Auto Renew for Local Domain via Digital Ocean</h1><p>
+      Sunday, 24 Mar 2024
+      
+        <span class="tags">
+          Tags:
+          
+            <a class="tag" href="/tags/digital ocean">digital ocean</a><a class="tag" href="/tags/gnu/linux">gnu/linux</a><a class="tag" href="/tags/home server">home server</a><a class="tag" href="/tags/letsencrypt">letsencrypt</a><a class="tag" href="/tags/raspberry pi">raspberry pi</a><a class="tag" href="/tags/ubuntu">ubuntu</a></span></p></header><div><p>I have build home server using Raspberry Pi 4 since a few months ago. This home server host several services for my home network, such as <a href="https://github.com/DNSCrypt/dnscrypt-server-docker">DNSCrypt</a>, <a href="https://github.com/home-assistant">Home Assistant</a> and <a href="https://atlas.ripe.net/docs/">RIPE Atlas Client</a>. This server is being monitored by Prometheus and Grafana. Docker containers are managed by <a href="https://www.portainer.io/">Portainer</a>.</p><p>Within all of the services that mentioned above, i gave them FQDN using my domain segmentationfault.xyz but with local network IPv4. These services also connected via <a href="https://zerotier.com">Zerotier</a>, so i can access and utilized them wherever i go.</p><p>All of those FQDN, are bind into LetsEncrypt certificates. Those certificates are created manually, one by one using certbot. They quite make hassle tasks to do.</p><h2 id="managing-letsencrypt-certificate-with-digital-ocean-certbot-plugin">Managing LetsEncrypt Certificate with Digital Ocean Certbot Plugin</h2><p>Well, i forgot that i registered those FQDNs on my Digital Ocean DNS. They can be managed using certbot Digital Ocean Plugin.</p><ul><li>Install Digital Ocean Certbot Plugin
+<code class="inline">sudo apt install certbot</code><code class="inline">sudo apt install python3-certbot-dns-digitalocean</code></li><li>Create Digital Ocean credential config file
+<code class="inline">touch ~/certbot-creds.ini</code><code class="inline">chmod go-rwx ~/certbot-creds.ini</code></li><li>Add your Digital Ocean API Key into credential config file
+</li></ul><pre><code class="bash">  vi ~/certbot-creds.ini
+  ....
+  dns_digitalocean_token = your_digitalocean_access_token
+  ....</code></pre><ul><li>Issue LetsEncrypt Certificates
+</li></ul><pre><code class="bash">  sudo certbot certonly --dns-digitalocean --dns-digitalocean-credentials ~/certbot-creds.ini -d pi-portainer.segmentationfault.xyz</code></pre><ul><li>Renewing LetsEncrypt Certificates
+</li></ul><pre><code class="bash">  sudo certbot renew</code></pre><ul><li>Certbot also carry its own renewal systemd services. 
+</li></ul><pre><code class="bash">  sudo systemctl status certbot.timer
+
+  ● certbot.timer - Run certbot twice daily
+     Loaded: loaded (/lib/systemd/system/certbot.timer; enabled; vendor preset: enabled)
+     Active: active (waiting) since Mon 2024-02-26 19:46:23 WIB; 3 weeks 6 days ago
+    Trigger: Mon 2024-03-25 06:55:11 WIB; 10h left
+   Triggers: ● certbot.service
+
+  Feb 26 19:46:23 praji-home-server systemd[1]: Started Run certbot twice daily.</code></pre></div></article></main>
+      <hr>
+      <footer>
+        
+<!--=====================================-->
+<!-- Override "includes/footer.html.eex" -->
+<!-- to customize your footer contents.  -->
+<!--=====================================-->
+
+        <p>
+          Powered by <a href="https://github.com/Dalgona/Serum">Serum</a> v1.5.1,
+          with <a href="https://github.com/Dalgona/serum-theme-essence">Essence</a> theme
+        </p>
+      </footer>
+    </div>
+    <script src="/assets/js/prism.js"></script>
+  </body>
+</html>
+<script>
+const ws_url = "ws://" + location.host + "/serum_live_reloader";
+var ws;
+
+connect();
+
+function connect() {
+  ws = new WebSocket(ws_url);
+  ws.onmessage = onMessage;
+  ws.onclose = onClose;
+}
+
+function onMessage(e) {
+  if (e.data === "reload") {
+    location.reload();
+  }
+}
+
+function onClose(e) {
+  console.warn("WebSocket disconnected from server. Reconnecting in 10 seconds.");
+  setTimeout(connect, 10000)
+}
+</script>
