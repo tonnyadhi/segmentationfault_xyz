@@ -20,7 +20,7 @@ Currently, i work at [Pintu](https://pintu.co.id) as SRE Tech Lead Specialist. B
 
 My topics of interests are Operating System, Pervasive Computing, High Performance System, Distributed and Cloud Computing, also Embedded System.
 
-You can access my full resume [here](https://docs.google.com/document/d/1rtork8KJbKw5-J9YK7RV49-pySj1yx_TIZR_RdPB86Y)
+You can access my full resume [here](https://docs.google.com/document/d/1jFO9RA8CVquNMSC2wIjhsIuT-2XWYl6kUJLNs-exA9U/edit?usp=sharing)
 
 ## List of Talks, Seminars and Articles
 + Talks and Seminar

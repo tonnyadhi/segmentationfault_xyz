@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/ragnalinux
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://segmentationfault.xyz
+  * I am ragnalinux (https://keybase.io/ragnalinux) on keybase.
+  * I have a public key ASC_xxsS3PyvJaBIFZUd_aeSguXWxQf2Zl0KNy0oWyJUCgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120c57f566265acaac4f5badea04f953b6902466529b61b0828f65d20a0080a5f8f0a",
+      "host": "keybase.io",
+      "kid": "0120bfc71b12dcfcaf25a04815951dfda79282e5d6c507f6665d0a372d285b22540a0a",
+      "uid": "9ad3bd403e80125310f1f2ed9fa4d819",
+      "username": "ragnalinux"
+    },
+    "merkle_root": {
+      "ctime": 1680754896,
+      "hash": "4e790ae236a94eb2d36f16565477d15aa74a71db0e6b2e5f9558bd0efa66494ce30fb3dc21163ec0849b539b631cb565ab4b1f28e306627350be56c5f6d5ac36",
+      "hash_meta": "d65a80ad12debdd83aa357e96b5568550b9c1226100e944e7aa5fe816183bcb8",
+      "seqno": 24298907
+    },
+    "service": {
+      "entropy": "q8mDgZ1hZImOTw3kdwgWzBDv",
+      "hostname": "segmentationfault.xyz",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.0.2"
+  },
+  "ctime": 1680754982,
+  "expire_in": 504576000,
+  "prev": "1de86e0d01546c89192d67e3f4518e38ce332f9fd17e328fd687498d5fa6cd19",
+  "seqno": 27,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgv8cbEtz8ryWgSBWVHf2nkoLl1sUH9mZdCjctKFsiVAoKp3BheWxvYWTESpcCG8QgHehuDQFUbIkZLWfj9FGOOM4zL5/RfjKP1odJjV+mzRnEIGxVN4MmmHpV9sIsqeK4q97JPHoNbxa1XmyeeRTYVWcZAgHCo3NpZ8RAvebZx3qVa1Sc6NrDBYAY23mt7i4H7RiQyI6rW5zorzmoM4FccRoOjxxp/Ye8JBMRCYW1kOqZNftRUNRKHJhfBahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIMn3rdzL4hxADL6Q9ktMaX8rkzge9OrrI+czqMsXH3+bo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ragnalinux
+
+==================================================================
