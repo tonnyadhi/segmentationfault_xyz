@@ -16,7 +16,7 @@ After that, i served at [MAPAN](https://mapan.io) (part of [GOJEK](https://gojek
 
 I stayed at [Stockbit](https://stockbit.com) for one and half years as Principal System Engineer. I was building Stockbit prototype for Cryptocurrency Exchange with my team.
 
-Currently, i work at [Pintu](https://pintu.co.id) SRE Tech Lead Specialist. Beside that, i also do some DevOps and  System Architecture consultancies.
+Currently, i work at [Pintu](https://pintu.co.id) as SRE Tech Lead Specialist. Beside that, i also do some DevOps and  System Architecture consultancies.
 
 My topics of interests are Operating System, Pervasive Computing, High Performance System, Distributed and Cloud Computing, also Embedded System.
 
